@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- Dev tool: renders assets/og.jpg (1200×630 share preview). Open via tools/serve.js and click Save. -->
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+Thai:wght@500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#ccc}canvas{display:block;max-width:100%}</style>
+</head>
+<body>
+<canvas id="c" width="1200" height="630"></canvas>
+<button id="save">Save to assets/og.jpg</button>
+<script src="../config.js"></script>
+<script>
+(async () => {
+  const W = window.WEDDING;
+  await document.fonts.load('500 64px "Noto Serif Thai"', W.groom.th + W.bride.th);
+  await document.fonts.load('400 120px "Cormorant Garamond"');
+  await document.fonts.load('italic 400 40px "Cormorant Garamond"');
+
+  const c = document.getElementById("c"), x = c.getContext("2d");
+  x.fillStyle = "#EFE8DF"; x.fillRect(0, 0, 1200, 630);
+
+  const blob = (cx, cy, r, col) => {
+    const g = x.createRadialGradient(cx, cy, 0, cx, cy, r);
+    g.addColorStop(0, col); g.addColorStop(1, col + "00");
+    x.fillStyle = g; x.beginPath(); x.arc(cx, cy, r, 0, 7); x.fill();
+  };
+  x.globalAlpha = .55;
+  [[1120,60,180,"#C0392B"],[1060,170,170,"#D63A6E"],[1160,280,150,"#8E5BD0"],[1010,40,140,"#E8833A"],[1120,420,130,"#5B7FE0"],
+   [60,600,190,"#F2C230"],[180,640,160,"#E8833A"],[20,470,140,"#5B7FE0"],[300,650,130,"#B79CF0"]]
+    .forEach(b => blob(...b));
+  x.globalAlpha = 1;
+
+  // slats
+  for (let i = 0; i < 300; i += 24) { x.fillStyle = `rgba(255,255,255,${.5 - i / 650})`; x.fillRect(i, 0, 1, 630); }
+
+  // moon + monogram
+  const mg = x.createRadialGradient(330, 300, 10, 330, 315, 190);
+  mg.addColorStop(0, "#fffdf9"); mg.addColorStop(1, "#F7F2EB");
+  x.shadowColor = "rgba(255,250,240,.95)"; x.shadowBlur = 60;
+  x.fillStyle = mg; x.beginPath(); x.arc(330, 315, 180, 0, 7); x.fill();
+  x.shadowBlur = 0;
+  const gold = x.createLinearGradient(240, 200, 420, 430);
+  gold.addColorStop(0, "#D2B47A"); gold.addColorStop(.5, "#B8975A"); gold.addColorStop(1, "#9C7C43");
+  x.fillStyle = gold; x.font = '400 150px "Cormorant Garamond"';
+  x.fillText(W.monogram[0], 230, 335); x.fillText(W.monogram[1], 310, 445);
+
+  // text
+  x.textAlign = "center";
+  x.fillStyle = "#857a6d"; x.font = 'italic 400 38px "Cormorant Garamond"';
+  x.fillText("The Wedding of", 820, 200);
+  x.fillStyle = "#3A332C"; x.font = '500 72px "Noto Serif Thai"';
+  x.fillText(W.groom.th, 820, 305);
+  x.fillStyle = "#B8975A"; x.font = 'italic 400 54px "Cormorant Garamond"';
+  x.fillText("&", 820, 362);
+  x.fillStyle = "#3A332C"; x.font = '500 72px "Noto Serif Thai"';
+  x.fillText(W.bride.th, 820, 450);
+  x.fillStyle = "#857a6d"; x.font = '400 30px "Cormorant Garamond"';
+  x.letterSpacing = "8px"; x.fillText(W.dateTextEn, 820, 520); x.letterSpacing = "0px";
+
+  ["#B8975A","#F2C230","#E8833A","#C0392B","#D63A6E","#8E5BD0","#B79CF0","#5B7FE0"].forEach((col, i) => {
+    x.fillStyle = col; x.beginPath(); x.arc(820 - 105 + i * 30, 565, 8, 0, 7); x.fill();
+  });
+
+  document.getElementById("save").onclick = async () => {
+    const r = await fetch("/__save?file=assets/og.jpg", { method: "POST", body: c.toDataURL("image/jpeg", .88) });
+    document.title = await r.text();
+  };
+  document.title = "ready";
+})();
+</script>
+</body>
+</html>
