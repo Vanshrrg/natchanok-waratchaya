@@ -1,60 +1,86 @@
 # Wedding Card: Progress & Handoff
 
-The online wedding invitation for **ณัชชนก (Great) & วรัชยา (Earth)**.
+Online wedding invitation for **นางสาววรัชยา ฝังใจ (Earth) & นายณัชชนก คำพิทักษ์ (Great)**.
+Sunday 21 March 2027 (พ.ศ. 2570), reception 11:00, โรงแรมเพชรรัชต์การ์เด้น · ห้องประชุมประดับฟ้า.
 
-- Live: https://vanshrrg.github.io/natchanok-waratchaya/
-- Repo: https://github.com/Vanshrrg/natchanok-waratchaya (GitHub Pages serves `main` from the repo root)
+- Live: https://vanshrrg.github.io/natchanok-waratchaya/ (`?theme=gold` / `?theme=sky` force a version)
+- Repo: https://github.com/Vanshrrg/natchanok-waratchaya (GitHub Pages serves `main` from the repo root, ~1 min to rebuild; files are cached up to 10 min, so check with Ctrl+Shift+R)
+- Owner / Google account: greatnk@gmail.com (GitHub: Vanshrrg)
+- Source images, fonts and music the couple supplied live in the parent folder (`../`), not in the repo.
 
 ## Set up on another PC
-Requirements: Git, Node.js (for the local preview only) and the GitHub CLI `gh` (optional).
-
 ```bash
 git clone https://github.com/Vanshrrg/natchanok-waratchaya.git
 cd natchanok-waratchaya
 node tools/serve.js
 ```
-Then open http://localhost:5500.
+Open http://localhost:5500. To publish: `git add -A && git commit -m "..." && git push`.
 
-To publish changes:
-```bash
-git add -A
-git commit -m "update card"
-git push
-```
-The live site updates in about a minute.
+**No Node on the current PC.** Previews were served with a small PowerShell HttpListener (same port 5500, also handles the `POST /__save` used by `tools/og.html`). Any static server works for viewing; only the og.jpg Save button needs `tools/serve.js` (or an equivalent).
 
-Note: `assets/palette-ref.jpg` (the colour reference image) is in `.gitignore`, so it is **not** in the repo. Copy it over by hand if you need it.
+## How the card works
+- Static site, no build step. **All text content is in `config.js`** (names, parents, invite line, date/time, schedule, venue, RSVP deadline, RSVP endpoint, max guests, footer).
+- Page 1 (cover): monogram, "The Wedding of", short names `วรัชยา & ณัชชนก`, date, "เปิดการ์ด" button. Tapping it opens page 2 and starts the music.
+- Page 2 (card): arch photo → parents (two columns, "และ" between) → invite line → full names with nicknames → colour dots → date/time → Schedule → Venue (map + calendar) → RSVP → footer (letters-only logo).
+- Names: the bride (วรัชยา) comes first everywhere. `config.js`: `bride`/`groom` each have `th` (short), `full` (title + surname) and `en` (nickname).
 
-## What's done
-- A static site (HTML/CSS/JS, no build step), mobile first, mostly in Thai.
-- **All content is in `config.js`** (names, date, time, venue, map link, RSVP deadline, Google Form IDs).
-- Sections: Cover (G E monogram + "เปิดการ์ด" button), then Hero (arch photo frame, both sets of parents + formal invitation line, names, palette dots, date and time), then Schedule (short time + ceremony list from `config.js` `schedule`), then Venue (map and calendar buttons: Google Calendar + .ics), then RSVP form, then Footer.
-- Design: linen `#EFE8DF` background (not white), cream `#F7F2EB` card, gold `#B8975A`, and accents from the "Colorful Editorial" palette (yellow `#F2C230`, orange `#E8833A`, red `#C0392B`, pink `#D63A6E`, purple `#8E5BD0`, lavender `#B79CF0`, blue `#5B7FE0`). Fonts: Noto Serif Thai, IBM Plex Sans Thai and Cormorant Garamond.
-- RSVP: name, attending (yes/no), number of guests (hidden when "no"), optional message. It posts to Google Forms `formResponse` (no-cors) and closes automatically after the deadline.
-- Optional assets show up by themselves once the file exists: `assets/logo.png`, `assets/hero.jpg`, `assets/music.mp3` (a ♪ toggle appears and playback starts when the card is opened).
-- Share preview `assets/og.jpg` (1200×630). To regenerate it: run `node tools/serve.js`, open http://localhost:5500/tools/og.html and click Save.
-- Tested at mobile width (375px): cover, validation, guest toggle, and map and calendar links (then 18:00 Thai time = 11:00Z; event is now 11:00 = 04:00Z). The live URL and og.jpg both return 200.
+### Two versions (orange / blue)
+- Each visit picks one at random (inline script in `<head>` of `index.html`); the round two-dot button bottom-left toggles. `?theme=sky|gold` forces one.
+- Orange = default styles (`style.css`) + `theme-orange.css`. Blue = `theme-sky.css`, everything scoped under `html.sky`.
+- What differs per version (switched in `script.js` on load and on toggle):
+
+| | Orange | Blue |
+|---|---|---|
+| Page-2 painting | `assets/bg-orange.jpg` (couple dancing by a basket shop) | `assets/bg-sky.jpg` (couple on a hill, sky) |
+| Arch photo | `assets/hero.jpg` | `assets/hero-sky.jpg` (zoom 130%, position 73% 38%) |
+| Cover monogram | `assets/logo.png` (gold, roses) | `assets/logo-cool.png` (blue, icy roses, green leaves) |
+| Footer letters | `assets/logo-letters.png` gold | same file, CSS hue-rotate to blue |
+| Music | `assets/music.mp3` One Summer's Day, 1× | `assets/music-sky.mp3` Marry You (string quartet), 0.8× |
+| Accent / grey text | gold `#B8975A`, muted `#5C5248` | blue `#4C86C6`, muted `#5B6F87` |
+
+### Backgrounds on wide screens (≥900px and landscape)
+Painting drawn at ONE scale everywhere (S = `50vw - 230px`), so the horizon / curb lines up and nothing is stretched:
+- `body::before` = left copy (bride / dancing couple), `body::after` = right copy (groom / shop).
+- `.scene` (3 `<i>` tiles in `index.html`, behind the card): the empty middle part of the painting plus mirror-image copies each side, so it fills the gap at any width or browser zoom. It is `clip-path`-trimmed 24px each side so its joins always sit under the card (vw includes the scrollbar).
+- Phones and portrait tablets: a single painting fixed behind the frosted card.
+- Tested at 375×812, 768×1024, 1024×768, 1027×490 (150% zoom), 1280×720, 1920×920, 2400 and 2880 wide (zoomed out).
+
+### Fonts (self-hosted ones are in `assets/fonts`)
+- **Kinnari** (TLWG ttf-tlwg 0.7.3, GPL + font exception): all Thai headings (`--serif-th`), incl. "และ". Regular and Bold files.
+- **IBM Plex Sans Thai** (Google Fonts): body text, form.
+- **Cormorant Garamond** (Google Fonts): English text, "&", labels.
+- **Simsatigan** (fontspace, freeware non-commercial): the nicknames *Earth* / *Great* only.
+
+### RSVP → Google Sheet
+- Form posts (no-cors) to the Apps Script web app in `config.js` `rsvpEndpoint`. The script (`tools/rsvp-apps-script.gs`, bound to the spreadsheet "Copy of WEDDING ค่าใช้จ่ายงานแต่ง") appends one row to the **ตอบรับแขก** tab: เวลา · ชื่อ - นามสกุล · มาร่วมงาน · จำนวนผู้ร่วมงาน · คำอวยพร (adds a bold frozen header if the tab is empty). It never deletes or edits anything else.
+- **Working since 25 Oct 2026**: direct test returned "ok". The fix for "การเข้าถึงถูกปฏิเสธ" (403) was the owner approving permissions (Review permissions → Advanced → Go to project → Allow). Deployment: Execute as Me, Who has access: Anyone.
+- The deployed script is the version **without** the `authorize()` helper; the repo copy has it (harmless). If the script code changes: Deploy → Manage deployments → ✏️ → New version, so the URL stays the same.
+- Closes automatically after `rsvpDeadline`.
+
+### Share image
+`assets/og.jpg` (1200×630) is drawn by `tools/og.html` from `config.js` (names, date, monogram letters, dots) in Kinnari + Cormorant. Regenerate after changing names/date/fonts: serve the site, open `/tools/og.html`, click Save. LINE/Facebook cache old previews.
+
+## Open items
+- [ ] **Confirm the RSVP deadline**: still the placeholder `2027-02-28`.
+- [ ] **Delete the two test rows** in ตอบรับแขก ("ทดสอบระบบ (ลบได้)", "ทดสอบจากการ์ด (ลบได้)"); keep the header row.
+- [ ] **Spreadsheet sharing** was set to "Anyone with the link — Editor" while debugging; it should go back to **Restricted** (the RSVP does not need it).
+- [ ] Optional: exact Google Maps share link for `venue.mapsUrl` (currently a search for the hotel name).
+- [ ] Optional: the share image still shows plain "G E" letters, not the rose monogram.
+- [ ] If names/date change: regenerate `og.jpg` and update `<title>` / `og:` tags in `index.html`.
 
 ## Decided against (per the couple)
-Guest names in the link, countdown, photo gallery or lightbox, food restrictions, contact info. Gift/PromptPay is not included unless asked for.
-
-## TODO
-- [ ] **Google Form**: create it (see README.md for the 4 questions), then put `formId` and the `entry.xxxx` IDs in `config.js`. Until then, submitting shows "ระบบตอบรับยังไม่เปิดใช้งาน" (RSVP not set up yet).
-- [x] **Event time**: reception 11:00 (calendar 11:00–14:00), matching the schedule.
-- [x] **Schedule** confirmed by the couple (07.29 ขันหมาก, 08.09 สวมแหวน, 08.29 ยกน้ำชา, 11.00 ฉลองมงคลสมรส).
-- [ ] **Confirm the RSVP deadline**: currently the placeholder `2027-02-28`.
-- [x] `assets/logo.png` (gold botanical monogram, resized to 600px, edges masked round in CSS) and `assets/hero.jpg` (couple photo, cropped at 50% 30% to keep faces in the arch). The G & E monogram is the couple's choice (confirmed).
-- [ ] Add `assets/music.mp3`.
-- [ ] Optionally replace `venue.mapsUrl` with the exact Google Maps share link (right now it's a search for the hotel name).
-- [ ] If the names or date change, regenerate `og.jpg` and update the `<title>`/`og:` meta tags in `index.html`.
+Guest names in the link, countdown, photo gallery/lightbox, food restrictions, contact info. Gift/PromptPay only if asked.
 
 ## Files
 | File | Purpose |
 |---|---|
-| `index.html` | Markup and meta/OG tags |
-| `style.css` | All styling (colour tokens in `:root`) |
-| `script.js` | Fills text from config, cover, music, reveal, calendar, RSVP |
+| `index.html` | Markup, meta/OG tags, random-theme script, `.scene` tiles |
+| `style.css` | Base (orange) styling, tokens in `:root`, @font-face for Kinnari and Simsatigan |
+| `theme-orange.css` | Orange page-2 painting and wide-screen layout |
+| `theme-sky.css` | Everything for the blue version |
+| `script.js` | Fills text from config, logos, photo, music per version, theme toggle, reveal, calendar, RSVP |
 | `config.js` | **All editable content** |
-| `README.md` | Edit guide and Google Form setup (Thai) |
-| `tools/serve.js` | Local preview server (port 5500) and OG save endpoint |
+| `README.md` | Edit guide and RSVP/Apps Script setup (Thai) |
+| `tools/rsvp-apps-script.gs` | Apps Script that writes RSVPs to the sheet |
+| `tools/serve.js` | Local preview server (port 5500) + og.jpg save endpoint |
 | `tools/og.html` | Generates `assets/og.jpg` |

@@ -3,8 +3,9 @@
 //  (All card content lives here — edit this file only)
 // ============================================================
 window.WEDDING = {
-  groom: { th: "ณัชชนก", en: "Great" },
-  bride: { th: "วรัชยา", en: "Earth" },
+  // th = short name (cover, title); full = with title and surname (main card)
+  groom: { th: "ณัชชนก", full: "นายณัชชนก คำพิทักษ์", en: "Great" },
+  bride: { th: "วรัชยา", full: "นางสาววรัชยา ฝังใจ", en: "Earth" },
 
   // Monogram letters (used until assets/logo.png is added)
   monogram: ["G", "E"],
@@ -44,20 +45,10 @@ window.WEDDING = {
   // RSVP closes at the end of this day
   rsvpDeadline: "2027-02-28",
 
-  // Google Form — see README.md for setup
-  googleForm: {
-    // From the form link: https://docs.google.com/forms/d/e/<formId>/viewform
-    formId: "",
-    fields: {
-      name: "entry.0000000000",
-      attending: "entry.0000000000",
-      guests: "entry.0000000000",
-      message: "entry.0000000000",
-    },
-    // Must match the choice text in the Google Form exactly
-    attendingYes: "เข้าร่วม",
-    attendingNo: "ไม่สะดวกเข้าร่วม",
-  },
+  // RSVP answers go to the "ตอบรับแขก" tab of the WEDDING spreadsheet through a
+  // Google Apps Script web app (code: tools/rsvp-apps-script.gs, steps: README.md).
+  // Paste the web app URL here: https://script.google.com/macros/s/.../exec
+  rsvpEndpoint: "https://script.google.com/macros/s/AKfycby1VJLGj45ZM4IWmd45fD8cKOdqZTTYViyqT-leNO91Dylrl13d0kFLIOsSqEzlGn-P/exec",
 
   maxGuests: 5,
 

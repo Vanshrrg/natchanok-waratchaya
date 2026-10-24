@@ -23,13 +23,15 @@
   });
 
   // ---------- logo / hero photo (shown only once the files exist) ----------
-  const probe = new Image();
-  probe.onload = () => {
-    document.querySelectorAll(".logo").forEach((el) => { el.hidden = false; });
-    $(".moon .monogram").hidden = true;
-    $(".footer .monogram").hidden = true;
-  };
-  probe.src = $(".logo").getAttribute("src");
+  // each logo replaces the monogram letters next to it once its file loads
+  document.querySelectorAll(".logo").forEach((logo) => {
+    const probe = new Image();
+    probe.onload = () => {
+      logo.hidden = false;
+      logo.parentElement.querySelector(".monogram").hidden = true;
+    };
+    probe.src = logo.getAttribute("src");
+  });
 
   const hero = new Image();
   hero.onload = () => {
@@ -43,13 +45,41 @@
   // ---------- music ----------
   const audio = $("#music");
   const musicBtn = $("#musicBtn");
-  let hasMusic = false;
-  audio.addEventListener("loadedmetadata", () => { hasMusic = true; });
+  // each version has its own song; the blue one plays at 0.8x speed
+  const TRACKS = {
+    orange: { src: "assets/music.mp3", rate: 1 },
+    sky: { src: "assets/music-sky.mp3", rate: 0.8 },
+  };
+  const isSky = () => document.documentElement.classList.contains("sky");
+  const setTrack = () => {
+    const t = TRACKS[isSky() ? "sky" : "orange"];
+    if (audio.getAttribute("src") !== t.src) audio.src = t.src;
+    audio.defaultPlaybackRate = audio.playbackRate = t.rate; // default: kept when a new src loads
+  };
+  setTrack();
+
+  // cover monogram: gold for orange, cool blue (green leaves) for the blue version
+  const coverLogo = $(".moon .logo");
+  const setLogo = () => coverLogo.setAttribute("src", isSky() ? "assets/logo-cool.png" : "assets/logo.png");
+  setLogo();
+  // show the ♪ toggle only once the file is known to exist
+  audio.addEventListener("loadedmetadata", () => { musicBtn.hidden = false; });
   const setPlaying = (on) => musicBtn.classList.toggle("playing", on);
-  const play = () => audio.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+  const play = () => audio.play()
+    .then(() => { musicBtn.hidden = false; setPlaying(true); })
+    .catch(() => setPlaying(false));
   musicBtn.addEventListener("click", () => {
     if (audio.paused) play();
     else { audio.pause(); setPlaying(false); }
+  });
+
+  // ---------- theme toggle (orange <-> blue) ----------
+  $("#themeBtn").addEventListener("click", () => {
+    document.documentElement.classList.toggle("sky");
+    const wasPlaying = !audio.paused;
+    setLogo();
+    setTrack();
+    if (wasPlaying) play();
   });
 
   // ---------- cover ----------
@@ -57,7 +87,8 @@
     $("#cover").classList.add("opened");
     document.body.classList.remove("locked");
     window.scrollTo(0, 0);
-    if (hasMusic) { musicBtn.hidden = false; play(); }
+    // start the music on this tap (phones only allow audio after a tap; iOS won't preload it)
+    play();
     setTimeout(() => ($("#cover").hidden = true), 1100);
   });
 
@@ -76,7 +107,7 @@
   const stamp = (d) => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
   const start = stamp(toUtc(W.startTime));
   const end = stamp(toUtc(W.endTime));
-  const title = `งานมงคลสมรส ${W.groom.th} & ${W.bride.th}`;
+  const title = `งานมงคลสมรส ${W.bride.th} & ${W.groom.th}`;
   const where = `${W.venue.name} ${W.venue.room}`;
 
   $("#gcalLink").href = "https://calendar.google.com/calendar/render?action=TEMPLATE" +
@@ -140,27 +171,24 @@
     if (!name) { err.textContent = "กรุณากรอกชื่อ"; form.elements.name.focus(); return; }
     if (!attending) { err.textContent = "กรุณาเลือกว่าจะมาร่วมงานหรือไม่"; return; }
 
-    const gf = W.googleForm;
-    if (!gf.formId) {
-      err.textContent = "ระบบตอบรับยังไม่เปิดใช้งาน (ยังไม่ได้ตั้งค่า Google Form)";
+    if (!W.rsvpEndpoint) {
+      err.textContent = "ระบบตอบรับยังไม่เปิดใช้งาน";
       return;
     }
 
     const yes = attending === "yes";
     const data = new URLSearchParams();
-    data.append(gf.fields.name, name);
-    data.append(gf.fields.attending, yes ? gf.attendingYes : gf.attendingNo);
-    data.append(gf.fields.guests, yes ? guests.value : "0");
-    data.append(gf.fields.message, form.elements.message.value.trim());
+    data.append("name", name);
+    data.append("attending", attending);
+    data.append("guests", yes ? guests.value : "0");
+    data.append("message", form.elements.message.value.trim());
 
     const btn = form.querySelector("button[type=submit]");
     btn.disabled = true;
     btn.textContent = "กำลังส่ง…";
     try {
-      // Google Forms doesn't allow CORS reads; no-cors still delivers the response.
-      await fetch(`https://docs.google.com/forms/d/e/${gf.formId}/formResponse`, {
-        method: "POST", mode: "no-cors", body: data,
-      });
+      // Apps Script web apps don't allow CORS reads; no-cors still delivers the row.
+      await fetch(W.rsvpEndpoint, { method: "POST", mode: "no-cors", body: data });
       form.hidden = true;
       $("#rsvpHint").hidden = true;
       $("#thanksMsg").textContent = yes
@@ -168,7 +196,7 @@
         : `ขอบคุณ ${name} สำหรับคำอวยพร`;
       $("#rsvpThanks").hidden = false;
     } catch {
-      err.innerHTML = `ส่งไม่สำเร็จ กรุณาลองอีกครั้ง หรือ <a href="https://docs.google.com/forms/d/e/${gf.formId}/viewform" target="_blank" rel="noopener">ตอบผ่าน Google Form</a>`;
+      err.textContent = "ส่งไม่สำเร็จ กรุณาตรวจสอบอินเทอร์เน็ตแล้วลองอีกครั้ง";
       btn.disabled = false;
       btn.textContent = "ส่งคำตอบ";
     }

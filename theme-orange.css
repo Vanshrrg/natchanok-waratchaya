@@ -1,0 +1,48 @@
+/* ============================================================
+   Orange version: watercolour street painting behind page 2
+   (assets/bg-orange.jpg, from "orange background.png").
+   Applies whenever the blue .sky theme is off.
+   ============================================================ */
+
+html:not(.sky) body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1;
+  background: #E9D9C4 url("assets/bg-orange.jpg") 42% 88% / cover no-repeat; /* keeps the dancing couple in view */
+}
+html:not(.sky) .card {
+  background: rgba(247,242,235,.76); /* busier painting than the sky, so a thicker veil for the text */
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+}
+@media (min-width: 520px) {
+  html:not(.sky) .card { border-radius: 18px; box-shadow: 0 30px 80px -40px rgba(58,51,44,.45); }
+}
+
+/* wide screens: the painting at ONE scale everywhere (drawn 2.6S wide,
+   S = 50vw - 230px), so the awning, shop front and curb line up.
+   - left copy: the dancing couple, then the shop under the card until
+     just before the red shop sign
+   - right copy: the shop and its sign, starting just after the couple
+   - .scene (behind the card): baskets from 62%-82% of the painting (no
+     couple, no sign, 0.52S wide) in the middle tile with a mirror-image copy
+     each side, filling whatever gap is left at any width or zoom */
+@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+  html:not(.sky) body::before, html:not(.sky) body::after, html:not(.sky) .scene i {
+    background: url("assets/bg-orange.jpg") no-repeat;
+    background-size: calc(2.6 * (50vw - 230px)) auto;
+  }
+  html:not(.sky) body::before, html:not(.sky) body::after { content: ""; position: fixed; top: 0; bottom: 0; z-index: -2; }
+  html:not(.sky) body::before {
+    left: 0; right: auto;
+    width: min(calc(1.57 * (50vw - 230px)), calc(50vw + 230px));
+    background-position: calc(-0.592 * (50vw - 230px)) 92%;
+  }
+  html:not(.sky) body::after {
+    /* starts 30px further left so it also fills under the trimmed edge of .scene */
+    left: calc(50vw + 200px - 0.06 * (50vw - 230px)); right: 0; width: auto;
+    background-position: calc(30px - 1.49 * (50vw - 230px)) 92%;
+  }
+  html:not(.sky) .scene i { width: calc(0.52 * (50vw - 230px)); background-position: calc(-1.612 * (50vw - 230px)) 92%; }
+  html:not(.sky) .scene i:nth-child(1) { left: calc(230px - 0.525 * (50vw - 230px)); transform: scaleX(-1); }
+  html:not(.sky) .scene i:nth-child(2) { left: calc(230px - 0.005 * (50vw - 230px)); }
+  html:not(.sky) .scene i:nth-child(3) { left: calc(230px + 0.515 * (50vw - 230px)); transform: scaleX(-1); }
+}

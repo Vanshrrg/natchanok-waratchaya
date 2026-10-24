@@ -1,0 +1,94 @@
+/* ============================================================
+   2nd version: "sky" theme (watercolour sky + grass background)
+   Active only when <html class="sky">, i.e. the address has ?theme=sky.
+   To make it the default, add class="sky" to <html> in index.html.
+   ============================================================ */
+
+.sky {
+  --linen: #EAF3FB;      /* pale sky (cover background) */
+  --cream: #F8FBFE;      /* cloud white */
+  --ink: #24364D;        /* deep navy text */
+  --muted: #5B6F87;
+  --gold: #4C86C6;       /* sky blue accent (buttons, &, borders) */
+  --gold-deep: #2F679F;  /* denim */
+  --line: #CFE0EE;
+
+  /* palette taken from the painting: flowers, grass, sky */
+  --c-yellow: #F2C230;
+  --c-orange: #F7DC77;
+  --c-red: #B9D86A;
+  --c-pink: #7DB443;
+  --c-purple: #2F5F96;
+  --c-lavender: #9CC3EC;
+  --c-blue: #4C86C6;
+  --c-green: #CFE3F7;
+}
+.sky body { background: var(--linen); }
+
+/* ---------- cover ---------- */
+/* footer letters tinted denim blue; the cover monogram swaps to assets/logo-cool.png (blue, green leaves) in script.js */
+.sky .footer .logo { filter: hue-rotate(180deg) saturate(.85) brightness(.9); }
+.sky .monogram { background: linear-gradient(160deg, #8DBBEA, var(--gold) 45%, var(--gold-deep)); -webkit-background-clip: text; background-clip: text; }
+
+/* ---------- page 2: painting fixed behind a frosted card ---------- */
+.sky body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1;
+  background: #8DBBEA url("assets/bg-sky.jpg") 50% 75% / cover no-repeat; /* keeps the couple in view on wide screens */
+}
+.sky .card {
+  background: rgba(248,251,254,.6);
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+}
+@media (min-width: 520px) {
+  .sky .card { border-radius: 18px; box-shadow: 0 30px 80px -40px rgba(36,54,77,.45); }
+}
+
+/* blue version uses the sunny sky photo in the arch (script.js sets the default photo inline) */
+/* zoomed to 130% so it can shift left; framed halfway between centred and fully balanced fingers */
+.sky .arch-photo { background-image: url("assets/hero-sky.jpg") !important; background-size: 130% auto; background-position: 73% 38%; }
+.sky .arch { box-shadow: inset 0 0 0 1px rgba(76,134,198,.3); }
+.sky .arch::after { border-color: rgba(255,255,255,.75); }
+
+/* dots run flowers -> grass -> sky */
+.sky .dots i:nth-child(1) { background: #F2C230; }
+.sky .dots i:nth-child(2) { background: #F7DC77; }
+.sky .dots i:nth-child(3) { background: #B9D86A; }
+.sky .dots i:nth-child(4) { background: #7DB443; }
+.sky .dots i:nth-child(5) { background: #CFE3F7; box-shadow: inset 0 0 0 1px #9CC3EC; }
+.sky .dots i:nth-child(6) { background: #8DBBEA; }
+.sky .dots i:nth-child(7) { background: #4C86C6; }
+.sky .dots i:nth-child(8) { background: #2F5F96; }
+
+.sky .divider { background: linear-gradient(90deg, #F2C230, #B9D86A, #7DB443, #8DBBEA, #4C86C6); }
+
+.sky .music { background: rgba(248,251,254,.9); }
+
+/* wide screens: the painting at ONE scale everywhere (drawn I = 2S wide,
+   S = 50vw - 230px), so the horizon lines up and nothing is stretched.
+   - left copy: bride; runs under the card as far as the sky stays empty
+   - right copy: groom; starts under the card where the sky is empty
+   - .scene (behind the card): the empty sky + grass between the people
+     (44%-68% of the painting, 0.48S wide) in the middle tile, with a
+     mirror-image copy each side; mirrors join seamlessly, so the gap is
+     filled at any width or zoom */
+@media (min-width: 900px) and (min-aspect-ratio: 1/1) {
+  .sky body::before, .sky body::after, .sky .scene i {
+    background: url("assets/bg-sky.jpg") no-repeat;
+    background-size: calc(100vw - 460px) auto;
+  }
+  .sky body::before, .sky body::after { content: ""; position: fixed; top: 0; bottom: 0; z-index: -2; }
+  .sky body::before {
+    left: 0; right: auto;
+    width: min(calc(1.18 * (50vw - 230px)), calc(50vw + 230px));
+    background-position: calc(-0.18 * (50vw - 230px)) 79%;
+  }
+  .sky body::after {
+    left: calc(50vw + 230px - 0.12 * (50vw - 230px)); right: 0; width: auto;
+    background-position: calc(460px - (50vw + 230px - 0.12 * (50vw - 230px))) 79%;
+  }
+  .sky .scene i { width: calc(0.48 * (50vw - 230px)); background-position: calc(-0.88 * (50vw - 230px)) 79%; }
+  .sky .scene i:nth-child(1) { left: calc(230px - 0.69 * (50vw - 230px)); transform: scaleX(-1); }
+  .sky .scene i:nth-child(2) { left: calc(230px - 0.21 * (50vw - 230px)); }
+  .sky .scene i:nth-child(3) { left: calc(230px + 0.27 * (50vw - 230px)); transform: scaleX(-1); }
+}
