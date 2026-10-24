@@ -14,6 +14,7 @@
   --c-purple: #8E5BD0;
   --c-lavender: #B79CF0;
   --c-blue: #5B7FE0;
+  --c-green: #A8D8B0;
 
   --serif-th: "Noto Serif Thai", serif;
   --sans-th: "IBM Plex Sans Thai", system-ui, sans-serif;
@@ -86,14 +87,14 @@ h1, h2, h3, p { margin: 0; }
 
 .dots { display: flex; justify-content: center; gap: 9px; margin: 26px 0 22px; }
 .dots i { width: 11px; height: 11px; border-radius: 50%; display: block; }
-.dots i:nth-child(1) { background: var(--gold); }
-.dots i:nth-child(2) { background: var(--c-yellow); }
-.dots i:nth-child(3) { background: var(--c-orange); }
-.dots i:nth-child(4) { background: var(--c-red); }
-.dots i:nth-child(5) { background: var(--c-pink); }
-.dots i:nth-child(6) { background: var(--c-purple); }
-.dots i:nth-child(7) { background: var(--c-lavender); }
-.dots i:nth-child(8) { background: var(--c-blue); }
+.dots i:nth-child(1) { background: var(--c-yellow); }
+.dots i:nth-child(2) { background: var(--c-orange); }
+.dots i:nth-child(3) { background: var(--c-red); }
+.dots i:nth-child(4) { background: var(--c-pink); }
+.dots i:nth-child(5) { background: var(--c-purple); }
+.dots i:nth-child(6) { background: var(--c-lavender); }
+.dots i:nth-child(7) { background: var(--c-blue); }
+.dots i:nth-child(8) { background: var(--c-green); }
 .dots-sm { gap: 6px; margin: 0 0 16px; }
 .dots-sm i { width: 7px; height: 7px; }
 

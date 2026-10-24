@@ -1,6 +1,6 @@
 # Wedding Card: Progress & Handoff
 
-The online wedding invitation for **ณัชชนก (Natchanok) & วรัชยา (Waratchaya)**.
+The online wedding invitation for **ณัชชนก (Great) & วรัชยา (Earth)**.
 
 - Live: https://vanshrrg.github.io/natchanok-waratchaya/
 - Repo: https://github.com/Vanshrrg/natchanok-waratchaya (GitHub Pages serves `main` from the repo root)

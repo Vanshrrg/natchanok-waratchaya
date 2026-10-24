@@ -3,8 +3,8 @@
 //  (All card content lives here — edit this file only)
 // ============================================================
 window.WEDDING = {
-  groom: { th: "ณัชชนก", en: "Natchanok" },
-  bride: { th: "วรัชยา", en: "Waratchaya" },
+  groom: { th: "ณัชชนก", en: "Great" },
+  bride: { th: "วรัชยา", en: "Earth" },
 
   // Monogram letters (used until assets/logo.png is added)
   monogram: ["G", "E"],
