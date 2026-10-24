@@ -141,17 +141,12 @@
   // ---------- RSVP ----------
   const form = $("#rsvpForm");
   const err = $("#rsvpError");
-  const deadline = new Date(`${W.rsvpDeadline}T23:59:59+07:00`);
-  const thaiDate = deadline.toLocaleDateString("th-TH", {
-    day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Bangkok",
-  });
-
+  const deadlineTime = W.rsvpDeadlineTime || "23:59";
+  const deadline = new Date(`${W.rsvpDeadline}T${deadlineTime}:00+07:00`);
+  // no deadline hint is shown; the form just closes at the deadline
   if (Date.now() > deadline) {
     form.hidden = true;
-    $("#rsvpHint").hidden = true;
     $("#rsvpClosed").hidden = false;
-  } else {
-    $("#rsvpHint").textContent = `กรุณาตอบกลับภายในวันที่ ${thaiDate}`;
   }
 
   const guests = form.elements.guests;
@@ -190,7 +185,6 @@
       // Apps Script web apps don't allow CORS reads; no-cors still delivers the row.
       await fetch(W.rsvpEndpoint, { method: "POST", mode: "no-cors", body: data });
       form.hidden = true;
-      $("#rsvpHint").hidden = true;
       $("#thanksMsg").textContent = yes
         ? `เราได้รับคำตอบของคุณ ${name} แล้ว แล้วพบกันในวันงาน`
         : `ขอบคุณ ${name} สำหรับคำอวยพร`;

@@ -55,13 +55,13 @@ Painting drawn at ONE scale everywhere (S = `50vw - 230px`), so the horizon / cu
 - Form posts (no-cors) to the Apps Script web app in `config.js` `rsvpEndpoint`. The script (`tools/rsvp-apps-script.gs`, bound to the spreadsheet "Copy of WEDDING ค่าใช้จ่ายงานแต่ง") appends one row to the **ตอบรับแขก** tab: เวลา · ชื่อ - นามสกุล · มาร่วมงาน · จำนวนผู้ร่วมงาน · คำอวยพร (adds a bold frozen header if the tab is empty). It never deletes or edits anything else.
 - **Working since 25 Oct 2026**: direct test returned "ok". The fix for "การเข้าถึงถูกปฏิเสธ" (403) was the owner approving permissions (Review permissions → Advanced → Go to project → Allow). Deployment: Execute as Me, Who has access: Anyone.
 - The deployed script is the version **without** the `authorize()` helper; the repo copy has it (harmless). If the script code changes: Deploy → Manage deployments → ✏️ → New version, so the URL stays the same.
-- Closes automatically after `rsvpDeadline`.
+- Closes automatically at `rsvpDeadline` + `rsvpDeadlineTime` (21 Mar 2027, 12:00 Thai time).
 
 ### Share image
 `assets/og.jpg` (1200×630) is drawn by `tools/og.html` from `config.js` (names, date, monogram letters, dots) in Kinnari + Cormorant. Regenerate after changing names/date/fonts: serve the site, open `/tools/og.html`, click Save. LINE/Facebook cache old previews.
 
 ## Open items
-- [ ] **Confirm the RSVP deadline**: still the placeholder `2027-02-28`.
+- [x] **RSVP deadline**: 21 March 2027 (the wedding day) at 12:00 Thai time (`rsvpDeadline` + `rsvpDeadlineTime` in config.js). No deadline hint is shown (removed at the couple's request); after the deadline the form hides and shows "ปิดรับการตอบรับแล้ว".
 - [ ] **Delete the two test rows** in ตอบรับแขก ("ทดสอบระบบ (ลบได้)", "ทดสอบจากการ์ด (ลบได้)"); keep the header row.
 - [ ] **Spreadsheet sharing** was set to "Anyone with the link — Editor" while debugging; it should go back to **Restricted** (the RSVP does not need it).
 - [ ] Optional: exact Google Maps share link for `venue.mapsUrl` (currently a search for the hotel name).

@@ -42,8 +42,9 @@ window.WEDDING = {
       encodeURIComponent("โรงแรมเพชรรัชต์การ์เด้น"),
   },
 
-  // RSVP closes at the end of this day
-  rsvpDeadline: "2027-02-28",
+  // RSVP closes at this date and time (Thailand time, 24h)
+  rsvpDeadline: "2027-03-21",
+  rsvpDeadlineTime: "12:00",
 
   // RSVP answers go to the "ตอบรับแขก" tab of the WEDDING spreadsheet through a
   // Google Apps Script web app (code: tools/rsvp-apps-script.gs, steps: README.md).

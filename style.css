@@ -292,7 +292,7 @@ h1, h2, h3, p { margin: 0; }
 
 /* rsvp */
 .section-title { font: 500 24px/1.5 var(--serif-th); }
-.hint { color: var(--muted); font-size: 14px; margin: 4px 0 30px; }
+.rsvp .section-title { margin-bottom: 34px; } /* space before the form */
 form { text-align: left; }
 .field { display: block; border: 0; padding: 0; margin: 0 0 22px; }
 .field > span, .field legend {
