@@ -13,13 +13,13 @@
   });
 
   // ---------- logo / hero photo (shown only once the files exist) ----------
-  const logo = $(".logo");
   const probe = new Image();
   probe.onload = () => {
-    logo.hidden = false;
+    document.querySelectorAll(".logo").forEach((el) => { el.hidden = false; });
     $(".moon .monogram").hidden = true;
+    $(".footer .monogram").hidden = true;
   };
-  probe.src = logo.getAttribute("src");
+  probe.src = $(".logo").getAttribute("src");
 
   const hero = new Image();
   hero.onload = () => {

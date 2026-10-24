@@ -151,7 +151,13 @@ h1, h2, h3, p { margin: 0; }
   background: radial-gradient(circle at 50% 45%, #fffdf9, var(--cream) 70%);
   box-shadow: 0 0 60px 10px rgba(255,250,240,.9), 0 0 0 1px rgba(184,151,90,.18);
 }
-.moon .logo { width: 70%; height: 70%; object-fit: contain; }
+.logo {
+  object-fit: contain;
+  /* fade out the image's square cream background, keep the round wreath */
+  -webkit-mask-image: radial-gradient(circle, #000 62%, transparent 71%);
+          mask-image: radial-gradient(circle, #000 62%, transparent 71%);
+}
+.moon .logo { width: 70%; height: 70%; }
 
 .eyebrow {
   font: italic 400 18px/1 var(--serif-en);
@@ -204,7 +210,7 @@ h1, h2, h3, p { margin: 0; }
 }
 .arch-photo {
   position: absolute; inset: 0;
-  background: center / cover no-repeat;
+  background: 50% 30% / cover no-repeat;
   opacity: 0; transition: opacity 1s;
 }
 .arch-photo.loaded { opacity: 1; }
@@ -305,6 +311,8 @@ select {
 /* footer */
 .footer { padding: 56px 28px 64px; }
 .footer p { white-space: pre-line; color: var(--muted); font-size: 15px; margin-top: 28px; }
+.footer .logo { display: block; width: 110px; height: 110px; margin: 14px auto 0; }
+.footer .logo[hidden] { display: none; }
 
 /* music */
 .music {

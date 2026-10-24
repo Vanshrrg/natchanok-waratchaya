@@ -7,7 +7,7 @@ window.WEDDING = {
   bride: { th: "วรัชยา", en: "Waratchaya" },
 
   // Monogram letters (used until assets/logo.png is added)
-  monogram: ["N", "W"],
+  monogram: ["G", "E"],
 
   invite: "ขอเรียนเชิญร่วมเป็นเกียรติ\nในงานมงคลสมรสของ",
 

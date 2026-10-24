@@ -28,7 +28,7 @@ Note: `assets/palette-ref.jpg` (the colour reference image) is in `.gitignore`, 
 ## What's done
 - A static site (HTML/CSS/JS, no build step), mobile first, mostly in Thai.
 - **All content is in `config.js`** (names, date, time, venue, map link, RSVP deadline, Google Form IDs).
-- Sections: Cover (N W monogram + "เปิดการ์ด" button), then Hero (arch photo frame, names, palette dots, date and time), then Venue (map and calendar buttons: Google Calendar + .ics), then RSVP form, then Footer.
+- Sections: Cover (G E monogram + "เปิดการ์ด" button), then Hero (arch photo frame, names, palette dots, date and time), then Venue (map and calendar buttons: Google Calendar + .ics), then RSVP form, then Footer.
 - Design: linen `#EFE8DF` background (not white), cream `#F7F2EB` card, gold `#B8975A`, and accents from the "Colorful Editorial" palette (yellow `#F2C230`, orange `#E8833A`, red `#C0392B`, pink `#D63A6E`, purple `#8E5BD0`, lavender `#B79CF0`, blue `#5B7FE0`). Fonts: Noto Serif Thai, IBM Plex Sans Thai and Cormorant Garamond.
 - RSVP: name, attending (yes/no), number of guests (hidden when "no"), optional message. It posts to Google Forms `formResponse` (no-cors) and closes automatically after the deadline.
 - Optional assets show up by themselves once the file exists: `assets/logo.png`, `assets/hero.jpg`, `assets/music.mp3` (a ♪ toggle appears and playback starts when the card is opened).
@@ -42,7 +42,8 @@ Guest names in the link, parents' formal wording, countdown, schedule/timeline, 
 - [ ] **Google Form**: create it (see README.md for the 4 questions), then put `formId` and the `entry.xxxx` IDs in `config.js`. Until then, submitting shows "ระบบตอบรับยังไม่เปิดใช้งาน" (RSVP not set up yet).
 - [ ] **Confirm the event time**: currently the placeholder `18:00` (with `endTime` 22:00). Update `startTime`, `endTime` and `timeTextTh`.
 - [ ] **Confirm the RSVP deadline**: currently the placeholder `2027-02-28`.
-- [ ] Add `assets/logo.png`, `assets/hero.jpg` (portrait, ~3:4) and `assets/music.mp3`.
+- [x] `assets/logo.png` (gold botanical monogram, resized to 600px, edges masked round in CSS) and `assets/hero.jpg` (couple photo, cropped at 50% 30% to keep faces in the arch). The G & E monogram is the couple's choice (confirmed).
+- [ ] Add `assets/music.mp3`.
 - [ ] Optionally replace `venue.mapsUrl` with the exact Google Maps share link (right now it's a search for the hotel name).
 - [ ] If the names or date change, regenerate `og.jpg` and update the `<title>`/`og:` meta tags in `index.html`.
 
