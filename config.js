@@ -9,15 +9,29 @@ window.WEDDING = {
   // Monogram letters (used until assets/logo.png is added)
   monogram: ["G", "E"],
 
-  invite: "ขอเรียนเชิญร่วมเป็นเกียรติ\nในงานมงคลสมรสของ",
+  // Parents (two lines per family), shown above the invitation line
+  parents: [
+    ["พ.ต.อ.วินทุ ฝังใจ", "นางมรกต ฝังใจ"],
+    ["ศ.นพ.โกวิท คำพิทักษ์", "ผศ.พญ. เตือนจิต คำพิทักษ์"],
+  ],
+
+  invite: "มีความยินดีขอเรียนเชิญเพื่อเป็นเกียรติ\nเนื่องในพิธีมงคลสมรส ระหว่าง",
 
   // Event date & time (Thailand time, 24h)
   date: "2027-03-21",
-  startTime: "18:00",
-  endTime: "22:00",
+  startTime: "11:00",
+  endTime: "14:00",
   dateTextTh: "วันอาทิตย์ที่ 21 มีนาคม พ.ศ. 2570",
   dateTextEn: "Sunday · 21.03.2027",
-  timeTextTh: "เวลา 18:00 น.",
+  timeTextTh: "เวลา 11:00 น.",
+
+  // Schedule (กำหนดการ): time + ceremony, shown in this order
+  schedule: [
+    ["07.29 น.", "พิธีแห่ขันหมาก"],
+    ["08.09 น.", "พิธีสวมแหวนหมั้น"],
+    ["08.29 น.", "พิธียกน้ำชา"],
+    ["11.00 น.", "งานฉลองมงคลสมรส"],
+  ],
 
   venue: {
     name: "โรงแรมเพชรรัชต์การ์เด้น",

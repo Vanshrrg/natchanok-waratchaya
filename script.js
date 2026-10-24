@@ -12,6 +12,16 @@
     el.textContent = W.monogram[+el.dataset.mono];
   });
 
+  // ---------- schedule ----------
+  const schedule = $("#schedule");
+  W.schedule.forEach(([time, what]) => {
+    const dt = document.createElement("dt");
+    const dd = document.createElement("dd");
+    dt.textContent = time;
+    dd.textContent = what;
+    schedule.append(dt, dd);
+  });
+
   // ---------- logo / hero photo (shown only once the files exist) ----------
   const probe = new Image();
   probe.onload = () => {
