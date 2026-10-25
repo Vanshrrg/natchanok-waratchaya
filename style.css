@@ -16,7 +16,7 @@
   --c-blue: #5B7FE0;
   --c-green: #3FA66B;
 
-  --serif-th: "Kinnari", serif;
+  --serif-th: "Kinnari", serif;   /* now only the schedule times, for their lining numerals */
   --names-th: "Laksaman", "Kinnari", serif;
   --sans-th: "IBM Plex Sans Thai", system-ui, sans-serif;
   --serif-en: "Cormorant Garamond", Georgia, serif;
@@ -265,29 +265,26 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
 }
 .parents-and {
   grid-column: 2; grid-row: 1 / 3;
-  font: 400 13px/1.9 var(--names-th); /* same colour as the parents' names */
+  font: 400 clamp(12px, 3.5vw, 15px)/1.9 var(--names-th); /* same size and colour as the parents' names */
 }
 .invite {
   white-space: pre-line;
   font-size: 15px; color: var(--muted);
   margin-bottom: 26px;
 }
-.name-th { font: 500 27px/1.45 var(--names-th); }
-/* nicknames (Earth, Great): Hurricane (Google Fonts, OFL), a calm brush signature */
-.name-en {
-  font: 400 52px/1.1 "Hurricane", var(--serif-en); /* Hurricane draws small, so a bigger size */
-  color: var(--gold-deep);
-}
-/* small gap between each nickname and its Thai full name (Earth sits below, Great above) */
-.name-th + .name-en { margin-top: 8px; }
-.name-en + .name-th { margin-top: 8px; }
+/* shrinks on narrow phones so the name and its bracketed nickname stay on one line */
+.name-th { font: 500 clamp(21px, 6.7vw, 27px)/1.45 var(--names-th); }
+/* nickname follows its Thai name in brackets, in the same face and colour */
+.name-en { font: inherit; color: inherit; }
+.name-en::before { content: "("; }
+.name-en::after { content: ")"; }
 .amp {
   display: block;
   font: italic 400 34px/1 var(--serif-en);
-  color: var(--gold-deep); /* same as Earth / Great */
+  color: var(--gold-deep); /* the one accent left in the names block */
   margin: 14px 0 10px;
 }
-.date-th { font: 500 18px/1.6 var(--serif-th); }
+.date-th { font: 500 18px/1.6 var(--sans-th); }
 .time-th { color: var(--muted); font-size: 15px; }
 
 /* schedule */
@@ -304,7 +301,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
 .schedule-list dd { margin: 0; font-size: 15px; line-height: 1.9; }
 
 /* venue */
-.venue-name { font: 500 22px/1.5 var(--serif-th); }
+.venue-name { font: 500 22px/1.5 var(--sans-th); }
 .venue-room { color: var(--muted); margin-top: 2px; }
 .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
 .cal-menu {
@@ -314,7 +311,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
 .cal-menu a { color: var(--gold-deep); text-underline-offset: 3px; }
 
 /* rsvp */
-.section-title { font: 500 24px/1.5 var(--serif-th); }
+.section-title { font: 500 24px/1.5 var(--sans-th); }
 .rsvp .section-title { margin-bottom: 34px; } /* space before the form */
 form { text-align: left; }
 .field { display: block; border: 0; padding: 0; margin: 0 0 22px; }
@@ -356,7 +353,7 @@ select {
 .choice input:focus-visible + span { outline: 2px solid var(--c-lavender); outline-offset: 2px; }
 .error { color: var(--c-red); font-size: 14px; min-height: 1.4em; margin: -6px 0 6px; }
 .thanks, .closed { padding: 10px 0; }
-.thanks-title { font: 500 22px/1.5 var(--serif-th); margin-bottom: 6px; }
+.thanks-title { font: 500 22px/1.5 var(--sans-th); margin-bottom: 6px; }
 #thanksMsg { color: var(--muted); }
 .closed {
   margin-top: 8px; padding: 18px;
