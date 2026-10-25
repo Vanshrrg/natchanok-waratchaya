@@ -84,11 +84,8 @@
 
   // ---------- cover ----------
   $("#open").addEventListener("click", () => {
-    // the opening hole grows from the centre of the monogram
-    const m = $(".moon").getBoundingClientRect();
+    // the envelope opens (style.css: envelope-open / card-out, 1.4s)
     const cover = $("#cover");
-    cover.style.setProperty("--cx", `${m.left + m.width / 2}px`);
-    cover.style.setProperty("--cy", `${m.top + m.height / 2}px`);
     cover.classList.add("opened");
     document.body.classList.remove("locked");
     document.body.classList.add("opening");

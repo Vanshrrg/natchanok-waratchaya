@@ -22,7 +22,7 @@ Open http://localhost:5500. To publish: `git add -A && git commit -m "..." && gi
 - Static site, no build step. **All text content is in `config.js`** (names, parents, invite line, date/time, schedule, venue, RSVP deadline, RSVP endpoint, max guests, footer).
 - Page 1 (cover): monogram, "The Wedding of", short names `วรัชยา & ณัชชนก`, date, "เปิดการ์ด" button. Tapping it opens page 2 and starts the music.
 - Logo readability: `.moon::before` puts a soft linen halo behind the cover monogram, and on screens ≤520px the pink/purple `.glow-tr` is shrunk and pushed into the top-right corner (it used to sit right behind the logo on phones).
-- Opening transition: tapping เปิดการ์ด grows a soft-edged hole from the monogram (CSS `@property --hole` animated mask on `.cover`, centre set in script.js), the cover text drifts forward and fades, and the card settles from a slight zoom/blur (`body.opening`). Reduced-motion users get no animation.
+- Opening transition (one 1.4s envelope motion, `envelope-open` + `card-out` in style.css): tapping เปิดการ์ด cuts the cover open in a V from the top like an envelope flap, the envelope slides down off-screen, and the card rises from a slightly lowered, smaller position as if pulled out. The cover is hidden after 1.5s (script.js). Reduced-motion users get no animation.
 - Phones / portrait tablets (anything not "≥900px and landscape"): page 2 opens on the painting alone with a bouncing "เลื่อนลง" cue (`#scrollCue`, tap = smooth scroll to the card, fades after scrolling); the card starts at 100svh and is followed by 60svh of painting, then the page ends (overscroll bounce disabled).
 - Page 2 (card): arch photo → parents (two columns, "และ" between) → invite line → full names with nicknames (bride name, *Earth* below it, &, *Great*, groom name below it; 8px gap between each nickname and its Thai name) → colour dots → date/time → Schedule → Venue (map + calendar) → RSVP → footer (letters-only logo).
 - Names: the bride (วรัชยา) comes first everywhere. `config.js`: `bride`/`groom` each have `th` (short), `full` (title + surname) and `en` (nickname).
@@ -51,7 +51,7 @@ Painting drawn at ONE scale everywhere (S = `50vw - 230px`), so the horizon / cu
 ### Fonts (self-hosted ones are in `assets/fonts`)
 - **Kinnari** (TLWG ttf-tlwg 0.7.3, GPL + font exception): all Thai headings (`--serif-th`), incl. "และ". Regular and Bold files.
 - **Laksaman** (same TLWG package and licence): the couple's Thai names (the two full names on page 2) and the parents' names incl. their "และ" (`--names-th`, falls back to Kinnari). Regular and Bold files.
-- **Purisa** (same TLWG package): the short names `วรัชยา & ณัชชนก` on the cover only. Regular and Bold files.
+- **TH Charmonman** (SIPA national font, free to embed; `assets/fonts/THCharmonman.ttf`, from `../TH Charmonman Regular`): the short names `วรัชยา & ณัชชนก` on the cover only, at 40px. Purisa files are still in `assets/fonts` but unused.
 - **IBM Plex Sans Thai** (Google Fonts): body text, form.
 - **Cormorant Garamond** (Google Fonts): English text, "&", labels.
 - **Simsatigan** (fontspace, freeware non-commercial): the nicknames *Earth* / *Great*.
