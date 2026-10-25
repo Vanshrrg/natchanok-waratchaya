@@ -17,6 +17,7 @@
   --c-green: #A8D8B0;
 
   --serif-th: "Kinnari", serif;
+  --names-th: "Laksaman", "Kinnari", serif;
   --sans-th: "IBM Plex Sans Thai", system-ui, sans-serif;
   --serif-en: "Cormorant Garamond", Georgia, serif;
 }
@@ -24,6 +25,9 @@
 /* Thai headings: Kinnari from TLWG (ttf-tlwg 0.7.3, GPL + font exception, free to embed) */
 @font-face { font-family: "Kinnari"; src: url("assets/fonts/Kinnari.ttf") format("truetype"); font-weight: 100 549; font-display: swap; }
 @font-face { font-family: "Kinnari"; src: url("assets/fonts/Kinnari-Bold.ttf") format("truetype"); font-weight: 550 900; font-display: swap; }
+/* names on the cover and page 2: Laksaman (same TLWG package and licence) */
+@font-face { font-family: "Laksaman"; src: url("assets/fonts/Laksaman.ttf") format("truetype"); font-weight: 100 549; font-display: swap; }
+@font-face { font-family: "Laksaman"; src: url("assets/fonts/Laksaman-Bold.ttf") format("truetype"); font-weight: 550 900; font-display: swap; }
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -187,7 +191,7 @@ body.opening .card { animation: card-in 1.4s cubic-bezier(.2,.7,.2,1) both; }
   margin-bottom: 10px;
 }
 .cover-names {
-  font: 500 30px/1.5 var(--serif-th);
+  font: 500 30px/1.5 var(--names-th);
   letter-spacing: .02em;
 }
 .cover-names i { font: italic 400 28px var(--serif-en); color: var(--gold); padding: 0 4px; }
@@ -266,7 +270,7 @@ body.opening .card { animation: card-in 1.4s cubic-bezier(.2,.7,.2,1) both; }
   font-size: 15px; color: var(--muted);
   margin-bottom: 26px;
 }
-.name-th { font: 500 27px/1.45 var(--serif-th); }
+.name-th { font: 500 27px/1.45 var(--names-th); }
 /* nicknames (Earth, Great): Simsatigan, freeware non-commercial, fontspace.com */
 @font-face {
   font-family: "Simsatigan";
@@ -277,6 +281,9 @@ body.opening .card { animation: card-in 1.4s cubic-bezier(.2,.7,.2,1) both; }
   font: 400 28px/1.3 "Simsatigan", var(--serif-en);
   color: var(--gold-deep);
 }
+/* small gap between each nickname and its Thai full name (Earth sits below, Great above) */
+.name-th + .name-en { margin-top: 8px; }
+.name-en + .name-th { margin-top: 8px; }
 .amp {
   display: block;
   font: italic 400 34px/1 var(--serif-en);
