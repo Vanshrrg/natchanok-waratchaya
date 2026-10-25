@@ -65,9 +65,9 @@
   // show the ♪ toggle only once the file is known to exist
   audio.addEventListener("loadedmetadata", () => { musicBtn.hidden = false; });
   const setPlaying = (on) => musicBtn.classList.toggle("playing", on);
-  // every start fades in from silence up to 80% volume. iOS ignores audio.volume,
+  // every start fades in from silence up to 60% volume. iOS ignores audio.volume,
   // so the fade runs through a Web Audio gain node (needs http(s), not file://)
-  const VOLUME = 0.8, FADE_S = 5;
+  const VOLUME = 0.6, FADE_S = 10;
   let ctx, gain, fadeTimer;
   const initGain = () => {
     if (ctx !== undefined) return;
