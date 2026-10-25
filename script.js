@@ -45,10 +45,10 @@
   // ---------- music ----------
   const audio = $("#music");
   const musicBtn = $("#musicBtn");
-  // each version has its own song; the blue one plays at 0.8x speed
+  // each version has its own song; music-sky.mp3 plays at 0.8x speed
   const TRACKS = {
-    orange: { src: "assets/music.mp3", rate: 1 },
-    sky: { src: "assets/music-sky.mp3", rate: 0.8 },
+    orange: { src: "assets/music-sky.mp3", rate: 0.8 },
+    sky: { src: "assets/music.mp3", rate: 1 },
   };
   const isSky = () => document.documentElement.classList.contains("sky");
   const setTrack = () => {
