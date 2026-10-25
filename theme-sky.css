@@ -24,18 +24,16 @@
   --c-green: #CFE3F7;
 }
 .sky body { background: var(--linen); }
-/* the big palette dots under the names stay the same as the orange version;
+/* the big palette dots under the names use the orange version's colours, ordered pink -> yellow -> green -> blue -> purple;
    the small dots and the glows keep the sky colours above */
-.sky .dots:not(.dots-sm) {
-  --c-yellow: #F2C230;
-  --c-orange: #E8833A;
-  --c-red: #C0392B;
-  --c-pink: #D63A6E;
-  --c-purple: #8E5BD0;
-  --c-lavender: #B79CF0;
-  --c-blue: #5B7FE0;
-  --c-green: #3FA66B;
-}
+.sky .dots:not(.dots-sm) i:nth-child(1) { background: #D63A6E; } /* pink */
+.sky .dots:not(.dots-sm) i:nth-child(2) { background: #C0392B; } /* red */
+.sky .dots:not(.dots-sm) i:nth-child(3) { background: #E8833A; } /* orange */
+.sky .dots:not(.dots-sm) i:nth-child(4) { background: #F2C230; } /* yellow */
+.sky .dots:not(.dots-sm) i:nth-child(5) { background: #3FA66B; } /* green */
+.sky .dots:not(.dots-sm) i:nth-child(6) { background: #5B7FE0; } /* blue */
+.sky .dots:not(.dots-sm) i:nth-child(7) { background: #B79CF0; } /* lavender */
+.sky .dots:not(.dots-sm) i:nth-child(8) { background: #8E5BD0; } /* purple */
 
 /* ---------- cover ---------- */
 /* footer letters tinted denim blue; the cover monogram swaps to assets/logo-cool.png (blue, green leaves) in script.js */
