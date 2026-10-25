@@ -190,7 +190,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
   margin-bottom: 10px;
 }
 .cover-names {
-  font: 300 34px/1.3 "Trirong", var(--names-th); /* Trirong (Google Fonts, OFL): print-style serif, marks never collide */
+  font: 400 34px/1.3 "Srisakdi", var(--names-th); /* Srisakdi (Google Fonts, OFL): decorative traditional Thai */
   letter-spacing: .02em;
 }
 .cover-names i { font: italic 400 28px var(--serif-en); color: var(--gold); padding: 0 4px; }
