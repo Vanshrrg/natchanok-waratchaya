@@ -141,6 +141,7 @@ h1, h2, h3, p { margin: 0; }
 .btn-line { background: transparent; color: var(--gold-deep); border: 1px solid var(--gold); }
 .btn-line:hover { background: var(--gold); color: #fff; }
 .btn-wide { width: 100%; margin-top: 8px; }
+.btn-music { gap: 8px; }
 .btn:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
   outline: 2px solid var(--c-lavender); outline-offset: 2px;
 }

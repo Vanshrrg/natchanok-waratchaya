@@ -65,7 +65,41 @@
   // show the ♪ toggle only once the file is known to exist
   audio.addEventListener("loadedmetadata", () => { musicBtn.hidden = false; });
   const setPlaying = (on) => musicBtn.classList.toggle("playing", on);
-  const play = () => audio.play()
+  // every start fades in from silence up to 80% volume. iOS ignores audio.volume,
+  // so the fade runs through a Web Audio gain node (needs http(s), not file://)
+  const VOLUME = 0.8, FADE_S = 5;
+  let ctx, gain, fadeTimer;
+  const initGain = () => {
+    if (ctx !== undefined) return;
+    ctx = null;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC || location.protocol === "file:") return;
+    try {
+      const c = new AC();
+      const g = c.createGain();
+      c.createMediaElementSource(audio).connect(g).connect(c.destination);
+      ctx = c; gain = g;
+    } catch (e) { /* fall back to audio.volume */ }
+  };
+  const fadeIn = () => {
+    if (gain) {
+      ctx.resume();
+      const t = ctx.currentTime;
+      gain.gain.cancelScheduledValues(t);
+      gain.gain.setValueAtTime(0, t);
+      gain.gain.linearRampToValueAtTime(VOLUME, t + FADE_S);
+      return;
+    }
+    clearInterval(fadeTimer);
+    const start = performance.now();
+    audio.volume = 0;
+    fadeTimer = setInterval(() => {
+      const k = Math.min(1, (performance.now() - start) / (FADE_S * 1000));
+      audio.volume = VOLUME * k;
+      if (k === 1) clearInterval(fadeTimer);
+    }, 50);
+  };
+  const play = () => (initGain(), fadeIn(), audio.play())
     .then(() => { musicBtn.hidden = false; setPlaying(true); })
     .catch(() => setPlaying(false));
   musicBtn.addEventListener("click", () => {
