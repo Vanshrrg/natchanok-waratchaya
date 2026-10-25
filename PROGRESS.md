@@ -54,7 +54,7 @@ Painting drawn at ONE scale everywhere (S = `50vw - 230px`), so the horizon / cu
 - **Purisa** (same TLWG package): the short names `วรัชยา & ณัชชนก` on the cover only. Regular and Bold files.
 - **IBM Plex Sans Thai** (Google Fonts): body text, form.
 - **Cormorant Garamond** (Google Fonts): English text, "&", labels.
-- **Simsatigan** (fontspace, freeware non-commercial): the nicknames *Earth* / *Great* and the "&" between them on page 2 (the cover "&" stays Cormorant).
+- **Simsatigan** (fontspace, freeware non-commercial): the nicknames *Earth* / *Great*.
 
 ### RSVP → Google Sheet
 - Form posts (no-cors) to the Apps Script web app in `config.js` `rsvpEndpoint`. The script (`tools/rsvp-apps-script.gs`, bound to the spreadsheet "Copy of WEDDING ค่าใช้จ่ายงานแต่ง") appends one row to the **ตอบรับแขก** tab: เวลา · ชื่อ - นามสกุล · มาร่วมงาน · จำนวนผู้ร่วมงาน · คำอวยพร (adds a bold frozen header if the tab is empty). It never deletes or edits anything else.
