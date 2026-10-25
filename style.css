@@ -270,14 +270,9 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
   margin-bottom: 26px;
 }
 .name-th { font: 500 27px/1.45 var(--names-th); }
-/* nicknames (Earth, Great): Katerlin, freeware non-commercial, fontspace.com */
-@font-face {
-  font-family: "Katerlin";
-  src: url("assets/fonts/Katerlin.ttf") format("truetype");
-  font-display: swap;
-}
+/* nicknames (Earth, Great): Hurricane (Google Fonts, OFL), a calm brush signature */
 .name-en {
-  font: 400 48px/1.1 "Katerlin", var(--serif-en); /* Katerlin draws small, so a bigger size */
+  font: 400 52px/1.1 "Hurricane", var(--serif-en); /* Hurricane draws small, so a bigger size */
   color: var(--gold-deep);
 }
 /* small gap between each nickname and its Thai full name (Earth sits below, Great above) */
