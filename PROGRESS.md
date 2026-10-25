@@ -21,6 +21,8 @@ Open http://localhost:5500. To publish: `git add -A && git commit -m "..." && gi
 ## How the card works
 - Static site, no build step. **All text content is in `config.js`** (names, parents, invite line, date/time, schedule, venue, RSVP deadline, RSVP endpoint, max guests, footer).
 - Page 1 (cover): monogram, "The Wedding of", short names `วรัชยา & ณัชชนก`, date, "เปิดการ์ด" button. Tapping it opens page 2 and starts the music.
+- Opening transition: tapping เปิดการ์ด grows a soft-edged hole from the monogram (CSS `@property --hole` animated mask on `.cover`, centre set in script.js), the cover text drifts forward and fades, and the card settles from a slight zoom/blur (`body.opening`). Reduced-motion users get no animation.
+- Phones / portrait tablets (anything not "≥900px and landscape"): page 2 opens on the painting alone with a bouncing "เลื่อนลง" cue (`#scrollCue`, tap = smooth scroll to the card, fades after scrolling); the card starts at 100svh and is followed by 60svh of painting, then the page ends (overscroll bounce disabled).
 - Page 2 (card): arch photo → parents (two columns, "และ" between) → invite line → full names with nicknames → colour dots → date/time → Schedule → Venue (map + calendar) → RSVP → footer (letters-only logo).
 - Names: the bride (วรัชยา) comes first everywhere. `config.js`: `bride`/`groom` each have `th` (short), `full` (title + surname) and `en` (nickname).
 
@@ -64,7 +66,7 @@ Painting drawn at ONE scale everywhere (S = `50vw - 230px`), so the horizon / cu
 - [x] **RSVP deadline**: 21 March 2027 (the wedding day) at 12:00 Thai time (`rsvpDeadline` + `rsvpDeadlineTime` in config.js). No deadline hint is shown (removed at the couple's request); after the deadline the form hides and shows "ปิดรับการตอบรับแล้ว".
 - [ ] **Delete the two test rows** in ตอบรับแขก ("ทดสอบระบบ (ลบได้)", "ทดสอบจากการ์ด (ลบได้)"); keep the header row.
 - [ ] **Spreadsheet sharing** was set to "Anyone with the link — Editor" while debugging; it should go back to **Restricted** (the RSVP does not need it).
-- [ ] Optional: exact Google Maps share link for `venue.mapsUrl` (currently a search for the hotel name).
+- [x] Map link: `venue.mapsUrl` opens Google Maps on Petcharat Garden Hotel (same place, /g/1tjpmzfw, as the couple's link https://share.google/Y8nZvJx39lYbYFuSx).
 - [ ] Optional: the share image still shows plain "G E" letters, not the rose monogram.
 - [ ] If names/date change: regenerate `og.jpg` and update `<title>` / `og:` tags in `index.html`.
 

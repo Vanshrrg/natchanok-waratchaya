@@ -84,13 +84,32 @@
 
   // ---------- cover ----------
   $("#open").addEventListener("click", () => {
-    $("#cover").classList.add("opened");
+    // the opening hole grows from the centre of the monogram
+    const m = $(".moon").getBoundingClientRect();
+    const cover = $("#cover");
+    cover.style.setProperty("--cx", `${m.left + m.width / 2}px`);
+    cover.style.setProperty("--cy", `${m.top + m.height / 2}px`);
+    cover.classList.add("opened");
     document.body.classList.remove("locked");
+    document.body.classList.add("opening");
     window.scrollTo(0, 0);
     // start the music on this tap (phones only allow audio after a tap; iOS won't preload it)
     play();
-    setTimeout(() => ($("#cover").hidden = true), 1100);
+    setTimeout(() => {
+      cover.hidden = true;
+      document.body.classList.remove("opening");
+    }, 1500);
   });
+
+  // ---------- scroll cue (phones: page 2 starts on the painting) ----------
+  const cue = $("#scrollCue");
+  cue.addEventListener("click", (e) => {
+    e.preventDefault();
+    $("#card").scrollIntoView({ behavior: "smooth" });
+  });
+  window.addEventListener("scroll", () => {
+    cue.classList.toggle("gone", window.scrollY > 40);
+  }, { passive: true });
 
   // ---------- reveal on scroll ----------
   const io = new IntersectionObserver((entries) => {
