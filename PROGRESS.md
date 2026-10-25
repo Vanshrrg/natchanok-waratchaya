@@ -21,6 +21,7 @@ Open http://localhost:5500. To publish: `git add -A && git commit -m "..." && gi
 ## How the card works
 - Static site, no build step. **All text content is in `config.js`** (names, parents, invite line, date/time, schedule, venue, RSVP deadline, RSVP endpoint, max guests, footer).
 - Page 1 (cover): monogram, "The Wedding of", short names `วรัชยา & ณัชชนก`, date, "เปิดการ์ด" button. Tapping it opens page 2 and starts the music.
+- Logo readability: `.moon::before` puts a soft linen halo behind the cover monogram, and on screens ≤520px the pink/purple `.glow-tr` is shrunk and pushed into the top-right corner (it used to sit right behind the logo on phones).
 - Opening transition: tapping เปิดการ์ด grows a soft-edged hole from the monogram (CSS `@property --hole` animated mask on `.cover`, centre set in script.js), the cover text drifts forward and fades, and the card settles from a slight zoom/blur (`body.opening`). Reduced-motion users get no animation.
 - Phones / portrait tablets (anything not "≥900px and landscape"): page 2 opens on the painting alone with a bouncing "เลื่อนลง" cue (`#scrollCue`, tap = smooth scroll to the card, fades after scrolling); the card starts at 100svh and is followed by 60svh of painting, then the page ends (overscroll bounce disabled).
 - Page 2 (card): arch photo → parents (two columns, "และ" between) → invite line → full names with nicknames → colour dots → date/time → Schedule → Venue (map + calendar) → RSVP → footer (letters-only logo).
@@ -37,7 +38,7 @@ Open http://localhost:5500. To publish: `git add -A && git commit -m "..." && gi
 | Arch photo | `assets/hero.jpg` | `assets/hero-sky.jpg` (zoom 130%, position 73% 38%) |
 | Cover monogram | `assets/logo.png` (gold, roses) | `assets/logo-cool.png` (blue, icy roses, green leaves) |
 | Footer letters | `assets/logo-letters.png` gold | same file, CSS hue-rotate to blue |
-| Music | `assets/music.mp3` One Summer's Day, 1× | `assets/music-sky.mp3` Marry You (string quartet), 0.8× |
+| Music | `assets/music.mp3` A Town with an Ocean View (Joe Hisaishi), 1× | `assets/music-sky.mp3` Marry You (string quartet), 0.8× |
 | Accent / grey text | gold `#B8975A`, muted `#5C5248` | blue `#4C86C6`, muted `#5B6F87` |
 
 ### Backgrounds on wide screens (≥900px and landscape)

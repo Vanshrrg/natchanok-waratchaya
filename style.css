@@ -158,8 +158,19 @@ h1, h2, h3, p { margin: 0; }
 body.opening .card { animation: card-in 1.4s cubic-bezier(.2,.7,.2,1) both; }
 
 .moon {
+  position: relative;
   width: 280px; height: 280px; max-width: 78vw; max-height: 78vw; margin: 0 auto 18px;
   display: grid; place-items: center;
+}
+/* soft cream halo so the thin gold lines stay readable over the colour glows */
+.moon::before {
+  content: ""; position: absolute; inset: -14%; z-index: -1; pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--linen) 0 46%, color-mix(in srgb, var(--linen) 70%, transparent) 58%, transparent 72%);
+}
+/* phones: the top-right glow would sit right behind the logo, so tuck it into the corner */
+@media (max-width: 520px) {
+  .cover .glow-tr { width: 260px; height: 300px; right: -150px; top: -130px; opacity: .45; }
 }
 .logo {
   object-fit: contain;
