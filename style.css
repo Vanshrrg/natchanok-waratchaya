@@ -314,7 +314,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
 .cal-menu a { color: var(--gold-deep); text-underline-offset: 3px; }
 
 /* rsvp */
-.section-title { font: 500 24px/1.5 var(--sans-th); }
+.section-title { font: 400 24px/1.5 var(--sans-th); }
 .rsvp .section-title { margin-bottom: 34px; } /* space before the form */
 form { text-align: left; }
 .field { display: block; border: 0; padding: 0; margin: 0 0 22px; }
@@ -356,7 +356,7 @@ select {
 .choice input:focus-visible + span { outline: 2px solid var(--c-lavender); outline-offset: 2px; }
 .error { color: var(--c-red); font-size: 14px; min-height: 1.4em; margin: -6px 0 6px; }
 .thanks, .closed { padding: 10px 0; }
-.thanks-title { font: 500 22px/1.5 var(--sans-th); margin-bottom: 6px; }
+.thanks-title { font: 400 22px/1.5 var(--sans-th); margin-bottom: 6px; }
 #thanksMsg { color: var(--muted); }
 .closed {
   margin-top: 8px; padding: 18px;
