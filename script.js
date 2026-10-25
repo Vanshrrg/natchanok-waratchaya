@@ -67,7 +67,9 @@
   const setPlaying = (on) => musicBtn.classList.toggle("playing", on);
   // every start fades in from silence up to 60% volume. iOS ignores audio.volume,
   // so the fade runs through a Web Audio gain node (needs http(s), not file://)
-  const VOLUME = 0.6, FADE_S = 10;
+  const VOLUME = 0.6, FADE_S = 20;
+  // eased curve (k²): rises slowly at first, since ears hear a straight ramp as front-loaded
+  const level = (k) => VOLUME * k * k;
   let ctx, gain, fadeTimer;
   const initGain = () => {
     if (ctx !== undefined) return;
@@ -86,8 +88,8 @@
       ctx.resume();
       const t = ctx.currentTime;
       gain.gain.cancelScheduledValues(t);
-      gain.gain.setValueAtTime(0, t);
-      gain.gain.linearRampToValueAtTime(VOLUME, t + FADE_S);
+      const curve = Float32Array.from({ length: 101 }, (_, i) => level(i / 100));
+      gain.gain.setValueCurveAtTime(curve, t, FADE_S);
       return;
     }
     clearInterval(fadeTimer);
@@ -95,7 +97,7 @@
     audio.volume = 0;
     fadeTimer = setInterval(() => {
       const k = Math.min(1, (performance.now() - start) / (FADE_S * 1000));
-      audio.volume = VOLUME * k;
+      audio.volume = level(k);
       if (k === 1) clearInterval(fadeTimer);
     }, 50);
   };
