@@ -36,7 +36,7 @@ Open http://localhost:5500. To publish: `git add -A && git commit -m "..." && gi
 |---|---|---|
 | Page-2 painting | `assets/bg-orange.jpg` (couple dancing by a basket shop) | `assets/bg-sky.jpg` (couple on a hill, sky) |
 | Arch photo | `assets/hero.jpg` | `assets/hero-sky.jpg` (zoom 130%, position 73% 38%) |
-| Cover monogram | `assets/logo.png` (gold; open roses, closed rosebuds and berry buds all yellowish orange) | `assets/logo-cool.png` (blue, green leaves; open roses and closed rosebuds bluish purple-blue, berry buds dark purple-blue) |
+| Cover monogram (1200×1200, 2× upscale of the 600px art) | `assets/logo.png` (gold; open roses, closed rosebuds and berry buds all yellowish orange) | `assets/logo-cool.png` (blue, green leaves; open roses and closed rosebuds bluish purple-blue, berry buds dark purple-blue) |
 | Footer letters | `assets/logo-letters.png` gold | same file, CSS hue-rotate to blue |
 | Music | `assets/music.mp3` A Town with an Ocean View (Joe Hisaishi), 1× | `assets/music-sky.mp3` Marry You (string quartet), 0.8× |
 | Accent / grey text | gold `#B8975A`, muted `#5C5248` | blue `#4C86C6`, muted `#5B6F87` |
