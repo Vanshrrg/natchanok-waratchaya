@@ -24,6 +24,17 @@
   --c-green: #CFE3F7;
 }
 .sky body { background: var(--linen); }
+/* the palette dots stay the same as the orange version (the sky colours above still tint the glows) */
+.sky .dots {
+  --c-yellow: #F2C230;
+  --c-orange: #E8833A;
+  --c-red: #C0392B;
+  --c-pink: #D63A6E;
+  --c-purple: #8E5BD0;
+  --c-lavender: #B79CF0;
+  --c-blue: #5B7FE0;
+  --c-green: #3FA66B;
+}
 
 /* ---------- cover ---------- */
 /* footer letters tinted denim blue; the cover monogram swaps to assets/logo-cool.png (blue, green leaves) in script.js */
