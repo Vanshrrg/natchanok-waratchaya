@@ -272,16 +272,19 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
   font-size: 15px; color: var(--muted);
   margin-bottom: 26px;
 }
-/* shrinks on narrow phones so the name and its bracketed nickname stay on one line */
-.name-th { font: 500 clamp(21px, 6.7vw, 27px)/1.45 var(--names-th); }
-/* nickname follows its Thai name in brackets, in the same face and colour */
-.name-en { font: inherit; color: inherit; }
-.name-en::before { content: "("; }
-.name-en::after { content: ")"; }
+.name-th { font: 500 27px/1.45 var(--names-th); }
+/* nicknames (Earth, Great): Hurricane (Google Fonts, OFL), a calm brush signature */
+.name-en {
+  font: 400 52px/1.1 "Hurricane", var(--serif-en); /* Hurricane draws small, so a bigger size */
+  color: var(--gold-deep);
+}
+/* small gap between each nickname and its Thai full name (Earth sits below, Great above) */
+.name-th + .name-en { margin-top: 8px; }
+.name-en + .name-th { margin-top: 8px; }
 .amp {
   display: block;
   font: italic 400 34px/1 var(--serif-en);
-  color: var(--gold-deep); /* the one accent left in the names block */
+  color: var(--gold-deep); /* same as Earth / Great */
   margin: 14px 0 10px;
 }
 .date-th { font: 500 18px/1.6 var(--sans-th); }

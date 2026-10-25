@@ -16,7 +16,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans+Thai:wght@300;400;500&family=Srisakdi&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Sans+Thai:wght@300;400;500&family=Srisakdi&family=Hurricane&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="theme-orange.css">
   <link rel="stylesheet" href="theme-sky.css">
@@ -80,9 +80,11 @@
       <p class="invite" data-bind="invite"></p>
 
       <div class="names">
-        <h2 class="name-th"><span data-bind="bride.full"></span> <span class="name-en" data-bind="bride.en"></span></h2>
+        <h2 class="name-th" data-bind="bride.full"></h2>
+        <p class="name-en" data-bind="bride.en"></p>
         <span class="amp">&amp;</span>
-        <h2 class="name-th"><span data-bind="groom.full"></span> <span class="name-en" data-bind="groom.en"></span></h2>
+        <p class="name-en" data-bind="groom.en"></p>
+        <h2 class="name-th" data-bind="groom.full"></h2>
       </div>
 
       <div class="dots" aria-hidden="true">
