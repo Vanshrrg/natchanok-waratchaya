@@ -24,8 +24,9 @@
   --c-green: #CFE3F7;
 }
 .sky body { background: var(--linen); }
-/* the palette dots stay the same as the orange version (the sky colours above still tint the glows) */
-.sky .dots {
+/* the big palette dots under the names stay the same as the orange version;
+   the small dots and the glows keep the sky colours above */
+.sky .dots:not(.dots-sm) {
   --c-yellow: #F2C230;
   --c-orange: #E8833A;
   --c-red: #C0392B;
