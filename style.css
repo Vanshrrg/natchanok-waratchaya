@@ -290,7 +290,7 @@ body.opening .card { animation: card-in 1.4s cubic-bezier(.2,.7,.2,1) both; }
 .amp {
   display: block;
   font: italic 400 34px/1 var(--serif-en);
-  color: var(--gold);
+  color: var(--gold-deep); /* same as Earth / Great */
   margin: 14px 0 10px;
 }
 .date-th { font: 500 18px/1.6 var(--serif-th); }
