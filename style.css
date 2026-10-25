@@ -270,14 +270,14 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
   margin-bottom: 26px;
 }
 .name-th { font: 500 27px/1.45 var(--names-th); }
-/* nicknames (Earth, Great): Simsatigan, freeware non-commercial, fontspace.com */
+/* nicknames (Earth, Great): Katerlin, freeware non-commercial, fontspace.com */
 @font-face {
-  font-family: "Simsatigan";
-  src: url("assets/fonts/Simsatigan.ttf") format("truetype");
+  font-family: "Katerlin";
+  src: url("assets/fonts/Katerlin.ttf") format("truetype");
   font-display: swap;
 }
 .name-en {
-  font: 400 28px/1.3 "Simsatigan", var(--serif-en);
+  font: 400 48px/1.1 "Katerlin", var(--serif-en); /* Katerlin draws small, so a bigger size */
   color: var(--gold-deep);
 }
 /* small gap between each nickname and its Thai full name (Earth sits below, Great above) */

@@ -36,7 +36,7 @@ Open http://localhost:5500. To publish: `git add -A && git commit -m "..." && gi
 |---|---|---|
 | Page-2 painting | `assets/bg-orange.jpg` (couple dancing by a basket shop) | `assets/bg-sky.jpg` (couple on a hill, sky) |
 | Arch photo | `assets/hero.jpg` | `assets/hero-sky.jpg` (zoom 130%, position 73% 38%) |
-| Cover monogram | `assets/logo.png` (gold, roses) | `assets/logo-cool.png` (blue, icy roses, green leaves, purple-pink berry buds) |
+| Cover monogram | `assets/logo.png` (gold; open roses, closed rosebuds and berry buds all yellowish orange) | `assets/logo-cool.png` (blue, green leaves; open roses and closed rosebuds bluish purple-blue, berry buds dark purple-blue) |
 | Footer letters | `assets/logo-letters.png` gold | same file, CSS hue-rotate to blue |
 | Music | `assets/music.mp3` A Town with an Ocean View (Joe Hisaishi), 1× | `assets/music-sky.mp3` Marry You (string quartet), 0.8× |
 | Accent / grey text | gold `#B8975A`, muted `#5C5248` | blue `#4C86C6`, muted `#5B6F87` |
@@ -54,7 +54,7 @@ Painting drawn at ONE scale everywhere (S = `50vw - 230px`), so the horizon / cu
 - **TH Charmonman** (SIPA national font, free to embed; `assets/fonts/THCharmonman.ttf`, from `../TH Charmonman Regular`): the short names `วรัชยา & ณัชชนก` on the cover only, at 40px. Purisa files are still in `assets/fonts` but unused.
 - **IBM Plex Sans Thai** (Google Fonts): body text, form.
 - **Cormorant Garamond** (Google Fonts): English text, "&", labels.
-- **Simsatigan** (fontspace, freeware non-commercial): the nicknames *Earth* / *Great*.
+- **Katerlin** (fontspace, freeware non-commercial; `assets/fonts/Katerlin.ttf`): the nicknames *Earth* / *Great*. (Replaced Simsatigan, whose file is still in `assets/fonts` but unused.)
 
 ### RSVP → Google Sheet
 - Form posts (no-cors) to the Apps Script web app in `config.js` `rsvpEndpoint`. The script (`tools/rsvp-apps-script.gs`, bound to the spreadsheet "Copy of WEDDING ค่าใช้จ่ายงานแต่ง") appends one row to the **ตอบรับแขก** tab: เวลา · ชื่อ - นามสกุล · มาร่วมงาน · จำนวนผู้ร่วมงาน · คำอวยพร (adds a bold frozen header if the tab is empty). It never deletes or edits anything else.
@@ -80,7 +80,7 @@ Guest names in the link, countdown, photo gallery/lightbox, food restrictions, c
 | File | Purpose |
 |---|---|
 | `index.html` | Markup, meta/OG tags, random-theme script, `.scene` tiles |
-| `style.css` | Base (orange) styling, tokens in `:root`, @font-face for Kinnari and Simsatigan |
+| `style.css` | Base (orange) styling, tokens in `:root`, @font-face for the self-hosted fonts |
 | `theme-orange.css` | Orange page-2 painting and wide-screen layout |
 | `theme-sky.css` | Everything for the blue version |
 | `script.js` | Fills text from config, logos, photo, music per version, theme toggle, reveal, calendar, RSVP |
