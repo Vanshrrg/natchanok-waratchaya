@@ -269,7 +269,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
 }
 .invite {
   white-space: pre-line;
-  font-size: 15px; color: var(--muted);
+  font-size: 15px; /* --ink, like the parents' names above it */
   margin-bottom: 26px;
 }
 .name-th { font: 500 27px/1.45 var(--names-th); }
@@ -288,7 +288,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
   margin: 14px 0 10px;
 }
 .date-th { font: 400 18px/1.6 var(--sans-th); }
-.time-th { color: var(--muted); font-size: 15px; }
+.time-th { font-size: 15px; } /* --ink, same as the date above it */
 
 /* schedule */
 .schedule-list {
