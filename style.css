@@ -287,7 +287,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
   color: var(--gold-deep); /* same as Earth / Great */
   margin: 14px 0 10px;
 }
-.date-th { font: 500 18px/1.6 var(--sans-th); }
+.date-th { font: 400 18px/1.6 var(--sans-th); }
 .time-th { color: var(--muted); font-size: 15px; }
 
 /* schedule */
@@ -304,7 +304,7 @@ body.opening .card { animation: card-out 1.4s cubic-bezier(.65,0,.35,1) both; }
 .schedule-list dd { margin: 0; font-size: 15px; line-height: 1.9; }
 
 /* venue */
-.venue-name { font: 500 22px/1.5 var(--sans-th); }
+.venue-name { font: 400 22px/1.5 var(--sans-th); }
 .venue-room { color: var(--muted); margin-top: 2px; }
 .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
 .cal-menu {
