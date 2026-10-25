@@ -161,6 +161,22 @@
       <div class="closed" id="rsvpClosed" hidden>ปิดรับการตอบรับแล้ว</div>
     </section>
 
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- ===== Gift registry ===== -->
+    <section class="gift reveal">
+      <p class="label">Gift registry</p>
+      <h3 class="section-title">ร่วมแสดงความยินดี</h3>
+      <p class="gift-note" data-bind="gift.note"></p>
+      <div class="gift-frame">
+        <img class="gift-qr" src="assets/qr-gift.jpg" alt="QR code สำหรับโอนเงิน" width="180" height="180">
+        <p class="gift-bank" data-bind="gift.bank"></p>
+        <p class="gift-name" data-bind="gift.name"></p>
+        <p class="gift-acc" data-bind="gift.account"></p>
+        <p class="gift-acc" data-bind="gift.promptpay"></p>
+      </div>
+    </section>
+
     <!-- ===== Footer ===== -->
     <footer class="footer reveal">
       <div class="divider" aria-hidden="true"></div>

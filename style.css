@@ -366,6 +366,23 @@ select {
   color: var(--muted);
 }
 
+/* gift registry: QR and bank details in an oval with a double gold rim */
+.gift-note { white-space: pre-line; color: var(--muted); font-size: 15px; margin-top: 10px; }
+.gift-frame {
+  position: relative;
+  width: min(300px, 100%); margin: 30px auto 0;
+  padding: 44px 24px 48px;
+  background: #fffdf9;
+  border: 1px solid var(--gold);
+  border-radius: 50% / 42%;
+  box-shadow: 0 0 0 6px var(--cream), 0 0 0 7px rgba(184,151,90,.45);
+}
+.gift-qr { display: block; width: 168px; height: 168px; margin: 0 auto 14px; }
+.gift-bank { font-size: 15px; }
+.gift-name { font: 500 19px/1.5 var(--names-th); color: var(--gold-deep); }
+.gift-acc { font-size: 15px; font-variant-numeric: tabular-nums; }
+.gift-name + .gift-acc { margin-top: 6px; }
+
 /* footer */
 .footer { padding: 56px 28px 64px; }
 .footer p { white-space: pre-line; color: var(--muted); font-size: 15px; margin-top: 28px; }

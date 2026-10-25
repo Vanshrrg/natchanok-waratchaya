@@ -53,5 +53,14 @@ window.WEDDING = {
 
   maxGuests: 5,
 
+  // Gift registry (QR image: assets/qr-gift.jpg)
+  gift: {
+    note: "ร่วมแสดงความยินดี และส่งมอบของขวัญให้บ่าว-สาว\nผ่านช่องทาง QR code นี้",
+    bank: "ธนาคารกสิกรไทย",
+    name: "นายณัชชนก คำพิทักษ์",
+    account: "เลขบัญชี 161-3-27580-7",
+    promptpay: "Promptpay 088-784-0589",
+  },
+
   footer: "ขอบคุณที่ร่วมเป็นส่วนหนึ่ง\nในวันพิเศษของเรา",
 };
