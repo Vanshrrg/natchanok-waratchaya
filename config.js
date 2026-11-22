@@ -24,7 +24,6 @@ window.WEDDING = {
   endTime: "14:00",
   dateTextTh: "วันอาทิตย์ที่ 21 มีนาคม พ.ศ. 2570",
   dateTextEn: "Sunday · 21.03.2027",
-  timeTextTh: "เวลา 11:00 น.",
 
   // Schedule (กำหนดการ): time + ceremony, shown in this order
   schedule: [
