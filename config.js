@@ -4,8 +4,8 @@
 // ============================================================
 window.WEDDING = {
   // th = short name (cover, title); full = with title and surname (main card)
-  groom: { th: "ณัชชนก", full: "นายณัชชนก คำพิทักษ์", en: "Great" },
-  bride: { th: "วรัชยา", full: "นางสาววรัชยา ฝังใจ", en: "Earth" },
+  groom: { th: "ณัชชนก", full: "ณัชชนก คำพิทักษ์", en: "Great" },
+  bride: { th: "วรัชยา", full: "วรัชยา ฝังใจ", en: "Earth" },
 
   // Monogram letters (used until assets/logo.png is added)
   monogram: ["G", "E"],
@@ -36,7 +36,7 @@ window.WEDDING = {
 
   venue: {
     name: "โรงแรมเพชรรัชต์การ์เด้น",
-    room: "ห้องประชุมประดับฟ้า",
+    room: "ห้องประชุมประดับ ฟ้าประดับดาว",
     // Opens Google Maps on โรงแรมเพชรรัชต์การ์เด้น (Petcharat Garden Hotel, place /g/1tjpmzfw,
     // same place as the couple's link https://share.google/Y8nZvJx39lYbYFuSx)
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Petcharat%20Garden%20Hotel",
