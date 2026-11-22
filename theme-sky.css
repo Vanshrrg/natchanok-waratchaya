@@ -54,9 +54,8 @@
   .sky .card { border-radius: 18px; box-shadow: 0 30px 80px -40px rgba(36,54,77,.45); }
 }
 
-/* blue version uses the sunny sky photo in the arch (script.js sets the default photo inline) */
-/* zoomed to 130% so it can shift left; framed halfway between centred and fully balanced fingers */
-.sky .arch-photo { background-image: url("assets/hero-sky.jpg") !important; background-size: 130% auto; background-position: 73% 38%; }
+/* Match the orange arch crop: faces above, bouquet through the lower half. */
+.sky .arch-photo { background-image: url("assets/hero-sky.jpg") !important; background-size: 150% auto; background-position: 43% 54%; }
 .sky .arch { box-shadow: inset 0 0 0 1px rgba(76,134,198,.3); }
 .sky .arch::after { border-color: rgba(255,255,255,.75); }
 
