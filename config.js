@@ -35,7 +35,7 @@ window.WEDDING = {
 
   venue: {
     name: "โรงแรมเพชรรัชต์การ์เด้น",
-    room: "ห้องประชุมประดับ ฟ้าประดับดาว",
+    room: "ห้องประดับฟ้า ประดับดาว",
     // Opens Google Maps on โรงแรมเพชรรัชต์การ์เด้น (Petcharat Garden Hotel, place /g/1tjpmzfw,
     // same place as the couple's link https://share.google/Y8nZvJx39lYbYFuSx)
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Petcharat%20Garden%20Hotel",
