@@ -34,7 +34,7 @@ window.WEDDING = {
   ],
 
   venue: {
-    name: "โรงแรมเพชรรัชต์การ์เด้น",
+    name: "โรงแรมเพชรรัชต์การ์เด้น อ.เมือง จ.ร้อยเอ็ด",
     room: "ห้องประดับฟ้า ประดับดาว",
     // Opens Google Maps on โรงแรมเพชรรัชต์การ์เด้น (Petcharat Garden Hotel, place /g/1tjpmzfw,
     // same place as the couple's link https://share.google/Y8nZvJx39lYbYFuSx)
